@@ -14,8 +14,7 @@ ReactDOM.render(
 reportWebVitals();
 */
 
-class Square extends React.Component {
-  render() {
+function Square(props){
     return (
       <button 
         className="square" 
@@ -25,7 +24,6 @@ class Square extends React.Component {
       </button>
     );
   }
-}
 
 class Board extends React.Component {
   constructor(props) {
@@ -35,10 +33,19 @@ class Board extends React.Component {
     }
   }
 
+  handleClick(i) {
+    const squares = this.state.squares.slice()
+    squares[i] = 'X'
+    this.setState({squares: squares})
+  } 
+
   renderSquare(i) {
-    return <Square value={this.state.squares[i]} 
-    onClick={() => this.handleClick(i)}
-    />;
+    return (
+      <Square 
+      value={this.state.squares[i]} 
+      onClick={() => this.handleClick(i)}
+      />
+    )
   }
 
   render() {
